@@ -32,17 +32,15 @@ matchings['rating']=matchings.apply(lambda row:1, axis=1)
 
 #print(matchings.groupby(['ProfielId']))
 #print(matchings.groupby(['ProfielId']).sum())
-matchings.groupby(['VacatureId']).sum().hist('rating', range=[0,150])
+#matchings.groupby(['VacatureId']).sum().hist('rating', range=[0,150])
 #matchings.hist('rating')
-plt.show()
+#plt.show()
 
-'''
 # Creating interaction matrix using rating data
 interactions = create_interaction_matrix(df = matchings,
                                          user_col = 'ProfielId',
                                          item_col = 'VacatureId',
                                          rating_col = 'rating')
-#print(interactions)
 
 # Create User Dict
 profile_dict = create_user_dict(interactions=interactions)
@@ -52,20 +50,26 @@ vacancy_dict = create_item_dict(df = vacancies,
                                name_col = 'Naam')
 
 mf_model = runMF(interactions = interactions,
-                 n_components = 30,
+                 n_components = 5,
                  loss = 'warp',
-                 epoch = 30,
+                 epoch = 100,
                  n_jobs = 4)
+print (interactions)
+x = sparse.csr_matrix(interactions.values.astype(np.int32))
+print(x.toarray())
+scores = pd.Series(mf_model.predict(0,np.arange(4)))
+print (scores)
+scores.index = interactions.columns
+print (scores)
 
 ## Calling 10 movie recommendation for user id 11
 rec_list = sample_recommendation_user(model = mf_model, 
                                       interactions = interactions, 
-                                      user_id = 11, 
+                                      user_id = 1, 
                                       user_dict = profile_dict,
                                       item_dict = vacancy_dict, 
-                                      threshold = 4,
+                                      threshold = 0,
                                       nrec_items = 10,
                                       show = True)
 
-'''
 
