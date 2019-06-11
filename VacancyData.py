@@ -6,6 +6,11 @@ class VacancyData:
     matchingPath = r"C:\Users\woutv\Jupyter\Jobs\inputdata\ProfielSolicitaties.csv"
     vacanciesPath = r"C:\Users\woutv\Jupyter\Jobs\inputdata\Vacatures.csv"
     profilePath = r"C:\Users\woutv\Jupyter\Jobs\inputdata\Profielen.csv"
+    ''' 
+    matchingPath = r"C:\Users\woutv\Jupyter\Jobs\inputdata\ProfielSolicitatiestest.csv"
+    vacanciesPath = r"C:\Users\woutv\Jupyter\Jobs\inputdata\Vacaturestest.csv"
+    profilePath = r"C:\Users\woutv\Jupyter\Jobs\inputdata\Profielentest.csv"
+    '''
     profileTestPath = r"C:\Users\woutv\Jupyter\Jobs\inputdata\ProfielenTest.csv"
 
     def getMatchings(self):    
